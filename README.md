@@ -37,11 +37,11 @@ Let's first start with inspecting a pair of intensity and segmentation images be
 from bfio import BioReader
 import matplotlib.pyplot as plt
 
-with BioReader("/mnt/hdd8/axle/dev/i2k_workshop/data_raw/intensity/eval_100_SKBR_ch2.ome.tif") as br:
+with BioReader("./data/evican/intensity/eval_100_SKBR_ch2.ome.tif") as br:
     print(f"Image Shape {br.shape}")
     plt.imshow(br[:].squeeze())
 
-with BioReader("/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label/eval_100_SKBR_ch2.ome.tif") as br:
+with BioReader("./data/evican/label/eval_100_SKBR_ch2.ome.tif") as br:
     print(f"Image Shape {br.shape}")
     plt.imshow(br[:].squeeze())
 ```
@@ -50,8 +50,8 @@ with BioReader("/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label/eval_100_SKBR_ch2
 Nyxus can be instantiated with a list of image pairs and and feature list to calculate the feature values. To start, we will just inspect one single feature. 
 ```
 from nyxus import Nyxus
-int_image_path = ["/mnt/hdd8/axle/dev/i2k_workshop/data_raw/intensity/eval_100_SKBR_ch2.ome.tif"]         
-seg_image_path = ["/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label/eval_100_SKBR_ch2.ome.tif"]
+int_image_path = ["./data/evican/intensity/eval_100_SKBR_ch2.ome.tif"]         
+seg_image_path = ["./data/evican/label/eval_100_SKBR_ch2.ome.tif"]
 nyx = Nyxus(["MEAN"])
 feature_vals = nyx.featurize_files(int_image_path, seg_image_path)
 ```
@@ -95,8 +95,8 @@ nyx = Nyxus(["*ALL_INTENSITY*", "*basic_morphology*"])
 Similar to a single image pair, `Nyxus` can be used to calculate features from all the images from one directory using `featurize_directory` method. 
 ```
 from nyxus import Nyxus
-int_image_dir_path = "/mnt/hdd8/axle/dev/i2k_workshop/data_raw/intensity"         
-seg_image_dir_path = "/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label"
+int_image_dir_path = "./data/evican/intensity"         
+seg_image_dir_path = "./data/evican/label"
 nyx = Nyxus(["MEAN"])
 feature_vals = nyx.featurize_directory(int_image_dir_path, seg_image_dir_path)
 ```
@@ -107,8 +107,8 @@ Nyxus also has an API to ingest image data as 2D/3D numpy array and calculate fe
 from bfio import BioReader
 import numpy as np
 
-int_image_path = "/mnt/hdd8/axle/dev/i2k_workshop/data_raw/intensity/eval_100_SKBR_ch2.ome.tif"         
-seg_image_path = "/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label/eval_100_SKBR_ch2.ome.tif"
+int_image_path = "./data/evican/intensity/eval_100_SKBR_ch2.ome.tif"         
+seg_image_path = "./data/evican/label/eval_100_SKBR_ch2.ome.tif"
 
 # load images as 2D numpy array
 int_img = BioReader(int_image_path)
@@ -130,8 +130,8 @@ By default, feature values are returned as a `pandas` dataframe. However, `Nyxus
 
 ```
 from nyxus import Nyxus
-int_image_path = ["/mnt/hdd8/axle/dev/i2k_workshop/data_raw/intensity/eval_100_SKBR_ch2.ome.tif"]         
-seg_image_path = ["/mnt/hdd8/axle/dev/i2k_workshop/data_raw/label/eval_100_SKBR_ch2.ome.tif"]
+int_image_path = ["./data/evican/intensity/eval_100_SKBR_ch2.ome.tif"]         
+seg_image_path = ["./data/evican/label/eval_100_SKBR_ch2.ome.tif"]
 nyx = Nyxus(["*ALL_INTENSITY*", "*basic_morphology*"])
 nyx.create_arrow_file()
 feature_vals = nyx.featurize_files(int_image_path, seg_image_path)
