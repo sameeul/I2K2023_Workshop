@@ -8,12 +8,12 @@ We will start with creating a virtual environment in `conda` and install `nyxus`
 ```
 conda create -n i2k_workshop python=3.9
 conda activate i2k_workshop
-conda install nyxus -c conda-forge
+conda install nyxus maven -c conda-forge 
 ```
 
 ### Dependencies
 The following  packages are needed for the workshop.
-* bfio ==2.1.9
+* bfio
 * Jupyter Notebook
 * Matplotlib
 * Vaex
