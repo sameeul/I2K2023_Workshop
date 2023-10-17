@@ -21,7 +21,7 @@ The following  packages are needed for the workshop.
 `pip` is the preferred way to install these packages.
 
 ```
-pip install bfio==2.1.9 jupyter matplotlib vaex
+pip install bfio jupyter matplotlib vaex
 ```
 
 ### Cloning The Repository
